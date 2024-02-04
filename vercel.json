@@ -7,7 +7,7 @@
             "config": { "maxlambdaSize": "15mb", "euntime": "python3.1"}
         },
         {
-            "src": "build_file.sh",
+            "src": "build_files.sh",
             "use": "@vercel/static-bulid",
             "config": {
                 "distDir": "staticfiles_build"
