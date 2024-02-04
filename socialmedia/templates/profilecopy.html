@@ -1,0 +1,115 @@
+{% load static %}
+        <main role="main" class="">
+            <!-- Your main content goes here -->
+            {% include "search.html" %}
+            {% include "profile_upload.html" %}
+            {% include "edit_profile.html" %}
+            <section class="gradient-custom-2">
+                <div class="container py-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col col-lg-9 col-xl-7">
+                            <div class="card" style="border: 2px solid black; border-radius: 5px;">
+                                <div class="rounded-top text-white d-flex flex-row"
+                                    style="background:black; height:200px;">
+                                    <div class="ms-4  d-flex flex-column" style="width: 150px; margin-top:5rem;">
+                                        <img src="{{user_profile.profileimg.url}}" alt="Generic placeholder image"
+                                            class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+
+                                        {% if user == user_profile.user %}
+                                        <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                                            style="z-index: 1; margin: 5px;" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal1" data-bs-whatever="@getbootstrap">
+                                            Edit profile
+                                        </button>
+
+                                        {% endif %}
+
+
+
+
+                                    </div>
+                                    <div class="ms-3" style="margin-top: 130px;">
+                                        <h5>@{{user_profile.user}}</h5>
+
+                                        <p><i class="fa-solid fa-location-dot"></i> {{user_profile.location}}</p>
+
+                                    </div>
+                                    <div style="margin-inline-start: auto; margin-top: auto;background:white;">
+                                        <form action="/follow" method="POST">
+                                            {% csrf_token %} {% if user != user_profile.user %}
+                                            <input type="hidden" value="{{user.username}}" name="follower" required />
+                                            <input type="hidden" value="{{user_object.username}}" name="user"
+                                                required />
+                                            <button type="submit" class="btn btn-outline-dark"
+                                                data-mdb-ripple-color="dark" style="z-index: 1; margin: 5px;"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                data-bs-whatever="@getbootstrap">
+                                                {{follow_unfollow}}
+                                            </button>
+
+                                            {% endif %}
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                                    <div class="d-flex justify-content-end text-center py-1">
+                                        <div>
+                                            <p class="mb-1 h5">{{user_post_length}}</p>
+                                            <p class="small text-muted mb-0">Photos</p>
+                                        </div>
+                                        <div class="px-3">
+                                            <p class="mb-1 h5">{{user_followers}}</p>
+                                            <p class="small text-muted mb-0">Followers</p>
+                                        </div>
+                                        <div>
+                                            <p class="mb-1 h5">{{user_following}}</p>
+                                            <p class="small text-muted mb-0">Following</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4 text-black">
+                                    <div class="mb-5">
+                                        <p class="lead fw-normal mb-1">About</p>
+                                        <div class="p-4" style="background-color: #f8f9fa;">
+                                            <p class="font-italic mb-1">{{user_profile.bio}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-5">
+                                        <p class="lead fw-normal mb-1">Photos</p>
+
+
+
+                                    </div>
+                                    <div class="image-grid">
+                                        {% for pos in user_posts %}
+                                        <div class="card image-item">
+                                            <img src="{{pos.image.url}}" class="card-img-top" alt="..."
+                                                style="width: 219px;height: 219px;">
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{pos.caption}}</h5>
+                                                {% if user == user_profile.user %} <a href=" /delete/{{pos.id}} "><i
+                                                        class="fa-solid fa-trash"></i></a>
+
+
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                        {% endfor %}
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
