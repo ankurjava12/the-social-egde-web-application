@@ -4,11 +4,11 @@
         {
             "src": "poll/wsgi.py",
             "use": "@vercel/python",
-            "config": { "maxlambdaSize": "15mb", "euntime": "python3.1"}
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.1"}
         },
         {
             "src": "build_files.sh",
-            "use": "@vercel/static-bulid",
+            "use": "@vercel/static-build",
             "config": {
                 "distDir": "staticfiles_build"
             }
