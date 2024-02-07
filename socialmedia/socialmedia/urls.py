@@ -8,6 +8,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('userauth.urls')),
+    path('oauth/', include('social_django.urls', namespace='social')),  # <-- here
 ]
 
 urlpatterns = urlpatterns+static(settings.MEDIA_URL,

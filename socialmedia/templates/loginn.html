@@ -21,12 +21,12 @@
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
-{% if invalid %}
-<div class="alert alert-danger" role="alert">
-    {{ invalid }}
-</div>
+                                    {% if invalid %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ invalid }}
+                                    </div>
 
-{% endif %}
+                                    {% endif %}
                                     <form class="mx-1 mx-md-4" method="post">
                                         {% csrf_token %}
                                         <div class="d-flex flex-row align-items-center mb-4">
@@ -61,13 +61,16 @@
                                             <button type="submit" class="btn btn-primary btn-lg">Login</button>
                                         </div>
 
+                                        <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+                                        
+
                                     </form>
 
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                        class="img-fluid" alt="Sample image" >
+                                        class="img-fluid" alt="Sample image">
 
                                 </div>
                             </div>
